@@ -2,6 +2,20 @@
 const API_CLIENT = '../../app/api/public/clientes.php?action=';
 const API_HISTORIAL = '../../app/api/dashboard/historial.php?action=';
 
+// Función para alternar la visibilidad de la contraseña
+const togglePasswordVisibility = (inputId) => {
+    const input = document.getElementById(inputId);
+    const icon = event.target.closest('.material-icons');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+    } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+    }
+};
+
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Petición para verificar si existen usuarios.

@@ -6,7 +6,6 @@ Login_Page::headerTemplateDashboard('Login | Administradores');
     <div class="container">
         <!-- IMAGEN DE FONDO -->
         <div class="img">
-            <img src="../../resources/img/brand/logoSinFondo.png" alt="dashboard02">
         </div>
         <!-- AQUÍ VA EL LOGIN -->
         <div class="login-container">

@@ -80,20 +80,42 @@ class Correo extends Validator
     // Funcion para enviar el correo electronico al destino seleccionado
     public function enviarCorreo() {
         try {
-            // Colocamos el correo que enviara el mensaje
-            $sender = "From: botcastroll24@gmail.com";
-            // Ejecutamos la funcion mail para enviar el mensaje
-            if(mail($this->correo, $this->asunto, $this->mensaje, $sender)) {
-                // En caso se ejecute se retorna el valor true
+            // Incluimos el autoloader de PHMailer
+            require_once(__DIR__ . '/../../libraries/phpmailer52/PHPMailerAutoload.php');
+            
+            // Creamos una instancia de PHMailer
+            $mail = new PHMailer();
+            
+            // Configuramos el servidor SMTP de Gmail
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'tls';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
+            
+            // Credenciales de Gmail 
+            $mail->Username = 'botcastroll24@gmail.com';
+            $mail->Password = 'your_app_password_here'; 
+            
+            // Configuramos remitente y destinatario
+            $mail->SetFrom('botcastroll24@gmail.com', 'Sistema Recuperación');
+            $mail->AddAddress($this->correo);
+            
+            // Configuramos el asunto y el cuerpo del mensaje
+            $mail->Subject = $this->asunto;
+            $mail->IsHTML(true);
+            $mail->Body = $this->mensaje;
+            
+            // Intentamos enviar el correo
+            if($mail->Send()) {
                 return true;
             } else {
-                // En caso que ocurra un error se muestra el mensaje 
-                $_SESSION['error'] = "Error al enviar el correo electrónico";
-                // El retorno es falso
+                $_SESSION['error'] = "Error al enviar el correo electrónico: " . $mail->ErrorInfo;
                 return false;
-            }        
+            }
         } catch (Exception $e) {
-            echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+            $_SESSION['error'] = "Excepción capturada: " . $e->getMessage();
             return false;
         }       
     }

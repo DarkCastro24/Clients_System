@@ -7,7 +7,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 	<!-- Seccion de titulo de pagina -->
 	<div class="container-fluid espacioSuperior">
 		<h5 class="tituloMto">Gestión de usuarios</h5>
-		<img src="../../resources/img/utilities/division.png" class="separador" alt="">
+		<hr style="border: none; background-color: black; height: 4px; margin: 10px 0;">
 		<!-- Cierra seccion de titulo de pagina -->
 	</div>
 	<!-- Seccion de busqueda filtrada -->
@@ -62,7 +62,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 	</div>
 	<!-- Modal chart-modal -->
 	<div class="modal fade" id="chart-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="title-chart">Gráfica de los cinco clientes con más acciones realizadas</h5>
@@ -73,14 +73,14 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" onclick="document.getElementById('chart-modal').classList.remove('show'); document.getElementById('chart-modal').style.display='none'; document.body.classList.remove('modal-open'); document.querySelector('.modal-backdrop')?.remove();">Cerrar</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Modal report-modal -->
 	<div class="modal fade" id="report-modal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="title-chart">Seleccione un rango de fechas para generar el reporte</h5>
@@ -106,7 +106,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-secondary" onclick="document.getElementById('report-modal').classList.remove('show'); document.getElementById('report-modal').style.display='none'; document.body.classList.remove('modal-open'); document.querySelector('.modal-backdrop')?.remove();">Cerrar</button>
 					<button onclick="parameterReport()" type="button" class="btn btn-primary">Generar reporte</button>
 				</div>
 			</div>
@@ -114,7 +114,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 id="modal-title" name="modal-title" class="modal-title" id="staticBackdropLabel">Modal title</h5>
@@ -183,7 +183,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-secondary" onclick="document.getElementById('staticBackdrop').classList.remove('show'); document.getElementById('staticBackdrop').style.display='none'; document.body.classList.remove('modal-open'); document.querySelector('.modal-backdrop')?.remove();">Cerrar</button>
 					<button onclick="saveData()" type="button" class="btn btn-primary">Guardar</button>
 				</div>
 			</div>
@@ -191,7 +191,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 	</div>
 	<!-- Modal  -->
 	<div class="modal fade" id="modal-form" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 id="modal-title" name="modal-title" class="modal-title">Opciones adicionales</h4>
@@ -247,7 +247,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de usuarios', 'dashboard');
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar formulario</button>
+					<button type="button" class="btn btn-primary" onclick="document.getElementById('modal-form').classList.remove('show'); document.getElementById('modal-form').style.display='none'; document.body.classList.remove('modal-open'); document.querySelector('.modal-backdrop')?.remove();">Cerrar formulario</button>
 				</div>
 			</div>
 		</div>

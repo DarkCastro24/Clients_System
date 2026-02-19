@@ -7,7 +7,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de clientes', 'dashboard');
 	<!-- Seccion de titulo de pagina -->
 	<div class="container-fluid espacioSuperior">
 		<h5 class="tituloMto">Gestión de cliente</h5>
-		<img src="../../resources/img/utilities/division.png" class="separador" alt="">
+		<hr style="border: none; background-color: black; height: 4px; margin: 10px 0;">
 		<!-- Cierra seccion de titulo de pagina -->
 	</div>
 	<!-- Seccion de busqueda filtrada -->

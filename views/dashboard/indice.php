@@ -5,7 +5,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de índice', 'dashboard');
 <div id="contenido" class="container-fluid fondo">
 	<div class="container-fluid espacioSuperior">
 		<h5 class="tituloMto">Gestión de índice de entrega</h5>
-		<img src="../../resources/img/utilities/division.png" class="separador" alt="">
+		<hr style="border: none; background-color: black; height: 4px; margin: 10px 0;">
 	</div>
 	<!-- Seccion de busqueda filtrada -->
 	<div class="container-fluid">

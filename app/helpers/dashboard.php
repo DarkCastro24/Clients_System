@@ -164,6 +164,24 @@ class Dashboard_Page
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
             <!-- LINK PARA EL LIVE SEARCH -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+            <script>
+                // Script para marcar el enlace activo del navbar con bold
+                document.addEventListener("DOMContentLoaded", function() {
+                    const currentPage = window.location.pathname.split("/").pop();
+                    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+                    
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute("href");
+                        if (href === currentPage) {
+                            link.style.fontWeight = "bold";
+                            link.style.textDecoration = "underline";
+                        } else {
+                            link.style.fontWeight = "normal";
+                            link.style.textDecoration = "none";
+                        }
+                    });
+                });
+            </script>
         </body>
         </html>
         ');

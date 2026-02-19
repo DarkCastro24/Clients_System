@@ -17,6 +17,7 @@ class Login_Page
                     <title>'.$title.'</title>
                     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
                     <link rel="stylesheet" href="../../resources/css/login.css">
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
                     <link rel="shortcut icon" href="../../resources/img/brand/icono.png" type="image/x-icon">
                 </head>
             <body>
@@ -35,6 +36,7 @@ class Login_Page
                     <title>'.$title.'</title>
                     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
                     <link rel="stylesheet" href="../../resources/css/login.css">
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
                     <link rel="shortcut icon" href="../../resources/img/brand/icono.png" type="image/x-icon">
                 </head>
             <body>

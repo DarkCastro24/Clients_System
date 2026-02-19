@@ -1,6 +1,20 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_CLIENT = '../../app/api/dashboard/usuarios.php?action=';
 
+// Función para alternar la visibilidad de la contraseña
+const togglePasswordVisibility = (inputId) => {
+    const input = document.getElementById(inputId);
+    const icon = event.target.closest('.material-icons');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+    } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+    }
+};
+
 // Método manejador de eventos que se ejecuta cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', function () {
     // Petición para verificar si existen usuarios.
@@ -51,7 +65,7 @@ const iniciarSesion = () => {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // En caso de iniciar sesion correctamente mostrar mensaje y redirigir al menu
-                            sweetAlert(4, response.message, 'main.php','Contraseña correcta');
+                            sweetAlert(4, 'Ya puede utilizar el sistema', 'main.php','Contraseña correcta');
                         } else {
                             if (response.message != 'Limite de intentos alcanzado') {
                                 sweetAlert(3, response.exception, null);

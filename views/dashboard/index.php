@@ -27,6 +27,9 @@ Login_Page::headerTemplateDashboard('Login | Administradores');
                     <a onclick="iniciarSesion()" class="btnDashboard">
                         INGRESAR
                     </a>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="email.php" style="color: #007bff; text-decoration: none; cursor: pointer;">¿Olvidó su contraseña?</a>
                 </div>  
             </form>
         </div>

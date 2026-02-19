@@ -7,7 +7,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de pedidos', 'dashboard');
 	<!-- Seccion de titulo de pagina -->
 	<div class="container-fluid"><br><br>
 		<h5 class="tituloMto">Gestión de pedidos</h5>
-		<img src="../../resources/img/utilities/division.png" class="separador" alt="">
+		<hr style="border: none; background-color: black; height: 4px; margin: 10px 0;">
 	</div><br> <!-- Cierra seccion de titulo de pagina -->
 	<!-- Seccion de busqueda filtrada -->
 	<div class="container-fluid">

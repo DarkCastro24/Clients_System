@@ -7,7 +7,7 @@ Dashboard_Page::headerTemplate('Mantenimiento de estado', 'dashboard');
 	<div class="container-fluid"><br><br>
 		<!-- Seccion titulo de pagina -->
 		<h5 class="tituloMto">Gestión de estados de cuenta</h5>
-		<img src="../../resources/img/utilities/division.png" class="separador" alt="">
+		<hr style="border: none; background-color: black; height: 4px; margin: 10px 0;">
 	</div><br> <!-- Cierra seccion titulo pagina -->
 
 	<!-- Seccion de busqueda filtrada -->
