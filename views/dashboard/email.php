@@ -10,7 +10,7 @@ Login_Page::headerTemplateDashboard('Login | Administradores');
         <!-- AQUÍ VA EL LOGIN -->
         <div class="login-container">
             <form method="post" id="email-form">
-                <img class="Avatar" src="../../resources/img/utilities/mail.jpg" alt="dashboard03">
+                <img class="Avatar" style="transform: scale(2.4); margin-bottom: 40px;" src="../../resources/img/utilities/mail.png" alt="dashboard03">
                 <h2>Recuperacíon</h2>
                 <!-- INPUTS -->
                 <div class="input-div one">
@@ -34,6 +34,35 @@ Login_Page::headerTemplateDashboard('Login | Administradores');
             </form>
         </div>
     </div>
+
+    <!-- MODAL PARA CAMBIAR CONTRASEÑA -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Cambiar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="password-form">
+                        <div class="mb-3">
+                            <label for="nuevaClave" class="form-label">Nueva Contraseña</label>
+                            <input type="password" class="form-control" id="nuevaClave" name="nuevaClave" maxlength="50" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmarClave" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="confirmarClave" name="confirmarClave" maxlength="50" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="cambiarContraseña()">Cambiar Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="../../app/controllers/initialization.js"></script>
 <?php
     Login_Page::footerTemplate('dashboard/email.js');

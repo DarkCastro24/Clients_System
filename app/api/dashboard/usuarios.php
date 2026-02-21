@@ -872,14 +872,46 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mensaje incorrecto';
                 }
                 break;
+            case 'resetPassword':
+                $_POST = $usuario->validateForm($_POST);
+                // Validamos que el correo esté almacenado en la sesión
+                if (isset($_SESSION['correo2'])) {
+                    // Validamos que las contraseñas coincidan
+                    if ($_POST['nuevaClave'] == $_POST['confirmarClave']) {
+                        // Establecemos el correo
+                        if ($usuario->setCorreo($_SESSION['correo2'])) {
+                            // Establecemos la nueva contraseña
+                            if ($usuario->setClave($_POST['nuevaClave'])) {
+                                // Ejecutamos la función para actualizar la contraseña
+                                if ($usuario->updatePassword()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Clave actualizada correctamente';
+                                    // Limpiamos la sesión de correo2
+                                    unset($_SESSION['correo2']);
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = 'El formato de la contraseña es incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'Correo incorrecto';
+                        }
+                    } else {
+                        $result['exception'] = 'Las contraseñas no coinciden';
+                    }
+                } else {
+                    $result['exception'] = 'Sesión expirada, por favor intente de nuevo';
+                }
+                break;
             case 'sendEmail':
                 $_POST = $usuario->validateForm($_POST);
                 // Generamos el codigo de seguridad 
                 $code = rand(999999, 111111);
                 // Concatenamos el codigo generado dentro del mensaje a enviar
-                $message = "Has solicitado recuperar tu contraseña por medio de correo electrónico, su código de seguridad es: $code";
+                $message = "Has solicitado recuperar tu clave por medio de correo electrnico, su codigo de seguridad es: $code";
                 // Colocamos el asunto del correo a enviar
-                $asunto = "Recuperación de contraseña Empresa";
+                $asunto = "Recuperación de clave Clients_System";
                 // Validmos el formato del mensaje que se enviara en el correo
                 if ($email->setMensaje($message)) {
                     // Validamos si el correo ingresado tiene formato correcto

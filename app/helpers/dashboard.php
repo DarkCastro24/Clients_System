@@ -38,7 +38,7 @@ class Dashboard_Page
                         <input id="tipoUsuario" name="tipoUsuario" type="hidden" value="' . $_SESSION['tipo'] . '">
                         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navbar--header">
                             <a class="navbar-brand" href="main.php">
-                                <img class="nav--logo" src="../../resources/img/brand/logo.png" alt="">
+                                <img class="nav--logo" style="transform: scale(3); padding-left: 15px;" src="../../resources/img/brand/logo.png" alt="">
                             </a>
                             <div class="usuario--contenedor">
                                 <img src="../../resources/img/icons/usuario.png" alt="" class="nav--user__icon">
@@ -88,7 +88,7 @@ class Dashboard_Page
                             <input id="tipoUsuario" name="tipoUsuario" type="hidden" value="' . $_SESSION['tipo'] . '">
                             <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navbar--header">
                                 <a class="navbar-brand" href="main.php">
-                                    <img class="nav--logo" src="../../resources/img/brand/logoBlanco.png" alt="">
+                                    <img class="nav--logo" style="transform: scale(3); padding-left: 30px;" src="../../resources/img/brand/logoBlanco.png" alt="">
                                 </a>
                                 <div class="usuario--contenedor">
                                     <img src="../../resources/img/icons/usuario.png" alt="" class="nav--user__icon">

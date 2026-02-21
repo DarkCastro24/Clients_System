@@ -60,7 +60,10 @@ function enviarCorreo() {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Mostramos mensaje de exito
-                            sweetAlert(1, response.message, 'password.php','Acceso concedido');
+                            sweetAlert(1, response.message, null,'Acceso concedido');
+                            // Mostramos el modal para cambiar la contraseña
+                            var passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+                            passwordModal.show();
                         } else {
                             // Validamos el numero de intentos al verificar el codigo
                             if (accion == 4) {
@@ -81,4 +84,57 @@ function enviarCorreo() {
             });
         }
     }
+}
+
+// Función para cambiar la contraseña durante la recuperación
+function cambiarContraseña() {
+    // Obtenemos los valores de los campos
+    var nuevaClave = document.getElementById('nuevaClave').value;
+    var confirmarClave = document.getElementById('confirmarClave').value;
+
+    // Validamos que los campos no estén vacíos
+    if (nuevaClave === '') {
+        sweetAlert(4, 'Ingrese la nueva contraseña', null);
+        return;
+    }
+
+    if (confirmarClave === '') {
+        sweetAlert(4, 'Confirme la contraseña', null);
+        return;
+    }
+
+    // Validamos que las contraseñas coincidan
+    if (nuevaClave !== confirmarClave) {
+        sweetAlert(4, 'Las contraseñas no coinciden', null);
+        return;
+    }
+
+    // Creamos un FormData para enviar los datos
+    var formData = new FormData();
+    formData.append('nuevaClave', nuevaClave);
+    formData.append('confirmarClave', confirmarClave);
+
+    // Realizamos la petición a la API
+    fetch(API_USUARIOS + 'resetPassword', {
+        method: 'post',
+        body: formData
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
+                    // Mostramos mensaje de éxito
+                    sweetAlert(1, response.message, 'index.php', 'Contraseña actualizada');
+                    // Cerramos el modal
+                    var passwordModal = bootstrap.Modal.getInstance(document.getElementById('passwordModal'));
+                    passwordModal.hide();
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 }
