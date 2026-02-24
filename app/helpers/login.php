@@ -49,6 +49,7 @@ class Login_Page
         print('
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../app/helpers/components.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                 <script type="text/javascript" src="../../app/controllers/'.$controller.'"></script>
             </body>
         </html>

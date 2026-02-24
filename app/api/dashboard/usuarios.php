@@ -22,28 +22,23 @@ if (isset($_GET['action'])) {
             case 'changePass':
                 // Obtenemos el form con los inputs para obtener los datos
                 $_POST = $cliente->validateForm($_POST);
-                if ($_SESSION['correo2'] != $_POST['clave1']) {
-                    if ($cliente->setCorreo($_SESSION['correo2'])) {
-                        if ($cliente->setClave($_POST['clave1'])) {
-                            // Ejecutamos la funcion para actualizar al usuario
-                            if ($cliente->updatePassword()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Clave actualizada correctamente';
-                            } else {
-                                // En caso fallar la obtencion del error se muestra el error
-                                $result['exception'] = Database::getException();
-                            }
+                if ($cliente->setCorreo($_POST['correo'])) {
+                    if ($cliente->setClave($_POST['clave1'])) {
+                        // Ejecutamos la funcion para actualizar al usuario
+                        if ($cliente->updatePassword()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Clave actualizada correctamente';
                         } else {
                             // En caso fallar la obtencion del error se muestra el error
-                            $result['exception'] = 'El formato de la contraseña es incorrecto';
+                            $result['exception'] = Database::getException();
                         }
                     } else {
                         // En caso fallar la obtencion del error se muestra el error
-                        $result['exception'] = 'Correo incorrecto';
+                        $result['exception'] = 'La contraseña debe contener al menos una mayuscula, un caracter especial y un numero';
                     }
                 } else {
                     // En caso fallar la obtencion del error se muestra el error
-                    $result['exception'] = 'La clave no puede ser igual al usuario';
+                    $result['exception'] = 'Correo incorrecto';
                 }
                 break;
                 // Caso para verificar si el codigo de seguridad ingresado es correcto
@@ -74,9 +69,9 @@ if (isset($_GET['action'])) {
                 // Generamos el codigo de seguridad 
                 $code = rand(999999, 111111);
                 // Concatenamos el codigo generado dentro del mensaje a enviar
-                $message = "Has solicitado recuperar tu contraseña por medio de correo electrónico, su código de seguridad es: $code";
+                $message = "Has solicitado recuperar tu clave por medio de correo electronico, su codigo de seguridad es: $code";
                 // Colocamos el asunto del correo a enviar
-                $asunto = "Recuperación de contraseña Empresa";
+                $asunto = "Recuperacion de clave Clients_System";
                 // Validmos el formato del mensaje que se enviara en el correo
                 if ($email->setMensaje($message)) {
                     // Validamos si el correo ingresado tiene formato correcto
@@ -892,7 +887,7 @@ if (isset($_GET['action'])) {
                                     $result['exception'] = Database::getException();
                                 }
                             } else {
-                                $result['exception'] = 'El formato de la contraseña es incorrecto';
+                                $result['exception'] = 'La contraseña debe contener al menos una mayuscula, un caracter especial y un numero';
                             }
                         } else {
                             $result['exception'] = 'Correo incorrecto';

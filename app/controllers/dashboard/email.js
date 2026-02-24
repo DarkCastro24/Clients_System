@@ -23,7 +23,7 @@ function enviarCorreo() {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Mostramos mensaje de exito
-                            sweetAlert(1, response.message, null,'Revise su correo');
+                            sweetAlert(1, response.message, null, 'Revise su correo');
                             // Habilitamos el campo para ingresar el codigo
                             document.getElementById('codigo').disabled = false;
                             // Deshabilitamos el campo para ingresar el correo
@@ -33,7 +33,7 @@ function enviarCorreo() {
                             // Colocamos uno a la accion para identificar que accion se debe realizar
                             accion = 1;
                         } else {
-                            sweetAlert(4, response.exception, null,'Ha ocurrido un error');
+                            sweetAlert(4, response.exception, null, 'Ha ocurrido un error');
                         }
                     });
                 } else {
@@ -44,7 +44,7 @@ function enviarCorreo() {
             });
         }
     } else {
-        // Validamos si el campo de correo esta vacio
+        // Validamos si el campo de codigo esta vacio
         if (document.getElementById("codigo").value == '') {
             // Enviamos el mensaje de validación
             sweetAlert(4, 'Ingrese el código de verificación', null);
@@ -60,15 +60,15 @@ function enviarCorreo() {
                         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                         if (response.status) {
                             // Mostramos mensaje de exito
-                            sweetAlert(1, response.message, null,'Acceso concedido');
-                            // Mostramos el modal para cambiar la contraseña
+                            sweetAlert(1, response.message, null, 'Acceso concedido');
+                            // ✅ Verificación exitosa: abrimos el modal para cambiar la contraseña
                             var passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
                             passwordModal.show();
                         } else {
                             // Validamos el numero de intentos al verificar el codigo
                             if (accion == 4) {
-                                // Si el usuario se equivoca mas de 3 veces en el codigo redirigira al index
-                                sweetAlert(4, 'Has fallado 3 veces el código, serás redirigido al login', 'index.php','Límite de intentos');
+                                // Si el usuario se equivoca más de 3 veces en el código, redirige al index
+                                sweetAlert(4, 'Has fallado 3 veces el código, serás redirigido al login', 'index.php', 'Límite de intentos');
                             } else {
                                 sweetAlert(4, response.exception, null);
                                 // Reutilizamos el atributo para llevar la cuenta de los intentos
@@ -88,8 +88,7 @@ function enviarCorreo() {
 
 // Función para cambiar la contraseña durante la recuperación
 function cambiarContraseña() {
-    // Obtenemos los valores de los campos
-    var nuevaClave = document.getElementById('nuevaClave').value;
+    var nuevaClave     = document.getElementById('nuevaClave').value;
     var confirmarClave = document.getElementById('confirmarClave').value;
 
     // Validamos que los campos no estén vacíos
@@ -109,24 +108,27 @@ function cambiarContraseña() {
         return;
     }
 
-    // Creamos un FormData para enviar los datos
-    var formData = new FormData();
-    formData.append('nuevaClave', nuevaClave);
-    formData.append('confirmarClave', confirmarClave);
+    // Incluimos el formulario principal para que el correo viaje
+    // junto con la nueva clave al servidor, permitiendo identificar al usuario
+    var formData = new FormData(document.getElementById('email-form'));
+    // Agregamos el correo manualmente porque el input está deshabilitado
+    formData.set('correo', document.getElementById('correo').value);
+    // Enviamos la nueva contraseña con el nombre que espera el servidor
+    formData.append('clave1', nuevaClave);
 
     // Realizamos la petición a la API
-    fetch(API_USUARIOS + 'resetPassword', {
+    fetch(API_USUARIOS + 'changePass', {
         method: 'post',
         body: formData
     }).then(function (request) {
         if (request.ok) {
             request.json().then(function (response) {
                 if (response.status) {
-                    // Mostramos mensaje de éxito
-                    sweetAlert(1, response.message, 'index.php', 'Contraseña actualizada');
                     // Cerramos el modal
                     var passwordModal = bootstrap.Modal.getInstance(document.getElementById('passwordModal'));
                     passwordModal.hide();
+                    // Mostramos mensaje de éxito y redirigimos a index.php
+                    sweetAlert(1, response.message, 'index.php', 'Contraseña actualizada');
                 } else {
                     sweetAlert(4, response.exception, null);
                 }
