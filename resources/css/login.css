@@ -132,6 +132,15 @@ form h2 {
   color: rgb(85, 85, 85);
 }
 
+/* Ocultar icono nativo de password del navegador */
+.input::-ms-reveal {
+  display: none;
+}
+
+.input::-webkit-credentials-auto-fill-button {
+  display: none;
+}
+
 .btn {
     display: block;
     width: 100%;
