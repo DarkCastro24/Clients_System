@@ -1,4 +1,7 @@
 <?php
+// Cargar configuración de variables de entorno
+require_once(__DIR__ . '/env.php');
+
 $email = "";
 $name = "";
 $errors = array();
@@ -84,13 +87,13 @@ class Correo extends Validator
             $mail->SMTPDebug = 0;
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'tls';
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = 587;
+            $mail->Host = env('MAIL_HOST', 'smtp.gmail.com');
+            $mail->Port = env('MAIL_PORT', 587);
 
-            $mail->Username = 'DiegoCastro360z@gmail.com';
-            $mail->Password = 'ppza pctn raku ohbt';
+            $mail->Username = env('MAIL_USERNAME');
+            $mail->Password = env('MAIL_PASSWORD');
 
-            $mail->setFrom('DiegoCastro360z@gmail.com', 'Sistema Recuperacion');
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME', 'Sistema Recuperacion'));
             $mail->addAddress($this->correo);
 
             $mail->Subject = $this->asunto;

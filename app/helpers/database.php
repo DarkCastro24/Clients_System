@@ -1,4 +1,7 @@
 <?php
+// Cargar configuración de variables de entorno
+require_once(__DIR__ . '/env.php');
+
 /*
 *   Clase para realizar las operaciones en la base de datos.
 */
@@ -14,13 +17,16 @@ class Database
     */
     private static function connect()
     {
-        // Credenciales para establecer la conexión con la base de datos.
-        $server = 'localhost';
-        $database = 'Clients_System';
-        $username = 'postgres';
-        $password = '2002';
+        // Credenciales para establecer la conexión con la base de datos desde variables de entorno.
+        $server = env('DB_HOST', 'localhost');
+        $database = env('DB_NAME', 'Clients_System');
+        $username = env('DB_USER', 'postgres');
+        $password = env('DB_PASSWORD', '');
+        $port = env('DB_PORT', 5432);
+        $driver = env('DB_DRIVER', 'pgsql');
+        
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
-        self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
+        self::$connection = new PDO($driver.':host='.$server.';dbname='.$database.';port='.$port, $username, $password);
     }
 
     /*
