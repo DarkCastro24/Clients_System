@@ -1,0 +1,13 @@
+.dockerignore
+*.git*
+.github
+.gitignore
+Dockerfile
+docker-compose.yml
+DOCKER_README.md
+node_modules
+npm-debug.log
+yarn-error.log
+.DS_Store
+.env.example
+README.md
