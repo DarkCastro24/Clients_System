@@ -24,24 +24,20 @@ if (isset($_GET['action'])) {
         case 'changePass':
             // Obtenemos el form con los inputs para obtener los datos
             $_POST = $cliente->validateForm($_POST);
-            if ($_SESSION['mail'] != $_POST['clave1']) {
-                if ($cliente->setCorreo($_SESSION['mail'])) {
-                    if ($cliente->setClave($_POST['clave1'])) {
-                        // Ejecutamos la funcion para actualizar al usuario
-                        if ($cliente->updatePassword()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Clave actualizada correctamente';
-                        } else {
-                            $result['exception'] = Database::getException();
-                        }
+            if ($cliente->setCorreo($_POST['correo'])) {
+                if ($cliente->setClave($_POST['clave1'])) {
+                    // Ejecutamos la funcion para actualizar la contraseña del cliente
+                    if ($cliente->updatePassword()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Clave actualizada correctamente';
                     } else {
-                        $result['exception'] = 'El formato de la contraseña es incorrecto';
+                        $result['exception'] = Database::getException();
                     }
                 } else {
-                    $result['exception'] = 'Correo incorrecto';
+                    $result['exception'] = 'La contraseña debe contener al menos una mayuscula, un caracter especial y un numero';
                 }
             } else {
-                $result['exception'] = 'La clave no puede ser igual al usuario';
+                $result['exception'] = 'Correo incorrecto';
             }
             break;
             // Caso para cerrar sesion dentro del sistema
