@@ -837,6 +837,28 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mensaje incorrecto';
                 }
                 break;
+                // Caso para actualizar la contraseña de un usuario por su nombre de usuario
+            case 'updatePasswordByUser':
+                // Validamos el form donde se encuentran los inputs para poder obtener sus valores
+                $_POST = $cliente->validateForm($_POST);
+                // Validamos si el usuario existe en la base de datos
+                if ($cliente->checkUser($_POST['usuario'])) {
+                    // Validamos si la clave ingresada cumple los requisitos
+                    if ($cliente->setClave($_POST['clave'])) {
+                        // Ejecutamos la funcion para actualizar la contraseña
+                        if ($cliente->changePassword($cliente->getId())) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Clave actualizada correctamente';
+                        } else {
+                            $result['exception'] = 'No se pudo actualizar la clave';
+                        }
+                    } else {
+                        $result['exception'] = $cliente->getPasswordError();
+                    }
+                } else {
+                    $result['exception'] = 'Usuario inexistente';
+                }
+                break;
             default:
                 // En caso de que el caso ingresado no sea ninguno de los anteriores se muestra el siguiente mensaje 
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
@@ -1112,6 +1134,28 @@ if (isset($_GET['action'])) {
                 } else {
                     // En caso de ocurrir fallar la funcion mostramos el mensaje
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+                }
+                break;
+                // Caso para actualizar la contraseña de un usuario por su nombre de usuario
+            case 'updatePasswordByUser':
+                // Validamos el form donde se encuentran los inputs para poder obtener sus valores
+                $_POST = $cliente->validateForm($_POST);
+                // Validamos si el usuario existe en la base de datos
+                if ($cliente->checkUser($_POST['usuario'])) {
+                    // Validamos si la clave ingresada cumple los requisitos
+                    if ($cliente->setClave($_POST['clave'])) {
+                        // Ejecutamos la funcion para actualizar la contraseña
+                        if ($cliente->changePassword($cliente->getId())) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Clave actualizada correctamente';
+                        } else {
+                            $result['exception'] = 'No se pudo actualizar la clave';
+                        }
+                    } else {
+                        $result['exception'] = $cliente->getPasswordError();
+                    }
+                } else {
+                    $result['exception'] = 'Usuario inexistente';
                 }
                 break;
             default:

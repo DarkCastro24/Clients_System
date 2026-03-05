@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testin Public - Actualizar clave de cliente</title>
+</head>
+<body>
+    <main>
+        <h4>Actualizar clave de cliente</h4>
+        <form id="form-testin" autocomplete="off">
+            <div>
+                <label for="usuario">Usuario</label>
+                <input id="usuario" name="usuario" type="text" placeholder="Ingrese el usuario" required>
+            </div>
+            <div>
+                <label for="clave">Contraseña</label>
+                <input id="clave" name="clave" type="text" placeholder="Ingrese la nueva contraseña" required>
+            </div>
+            <button type="submit">Actualizar clave</button>
+        </form>
+    </main>
+
+    <script>
+        const API_CLIENTES = '../../app/api/public/clientes.php?action=updatePasswordByUser';
+        const FORM = document.getElementById('form-testin');
+
+        FORM.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            try {
+                const formData = new FormData(FORM);
+
+                const response = await fetch(API_CLIENTES, {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+                alert(JSON.stringify(data));
+
+                if (data.status) {
+                    FORM.reset();
+                }
+            } catch (error) {
+                alert('Error de conexión con el servidor');
+            }
+        });
+    </script>
+</body>
+</html>

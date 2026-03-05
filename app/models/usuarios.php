@@ -630,4 +630,18 @@ class Usuario extends Validator
         return Database::getRows($query, $params);
     }
 
+    // Funcion para actualizar la contraseña de un usuario buscandolo por su nombre de usuario
+    public function updatePasswordByUser()
+    {
+        // Verificamos si el usuario existe en la base de datos
+        if ($this->checkUser($this->usuario)) {
+            // Encriptamos la clave con bcrypt
+            $hash = password_hash($this->clave, PASSWORD_DEFAULT);
+            // Declaracion de la sentencia SQL usando usuario como filtro en el WHERE
+            $sql = 'UPDATE administradores SET clave = ? WHERE usuario = ?';
+            $params = array($hash, $this->usuario);
+            return Database::executeRow($sql, $params);
+        }
+        return false;
+    }
 }

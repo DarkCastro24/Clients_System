@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testin - Actualizar clave</title>
+</head>
+<body>
+    <main>
+        <h4>Actualizar clave de usuario</h4>
+        <form id="form-testin" autocomplete="off">
+            <div>
+                <label for="usuario">Usuario</label>
+                <input id="usuario" name="usuario" type="text" placeholder="Ingrese el usuario" required>
+            </div>
+            <div>
+                <label for="clave">Contraseña</label>
+                <input id="clave" name="clave" type="text" placeholder="Ingrese la nueva contraseña" required>
+            </div>
+            <button type="submit">Actualizar clave</button>
+        </form>
+    </main>
+    <script>
+    const API_USUARIOS = '../../app/api/dashboard/usuarios.php?action=updatePasswordByUser';
+const FORM = document.getElementById('form-testin');
+
+FORM.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    try {
+        const formData = new FormData(FORM);
+
+        const response = await fetch(API_USUARIOS, {
+            method: 'POST',
+            body: formData,
+            credentials: 'include'
+        });
+
+        const data = await response.json();
+        alert(JSON.stringify(data));
+
+        if (data.status) {
+            sweetAlert(1, 'Clave actualizada correctamente', true);
+            FORM.reset();
+        } else {
+            sweetAlert(2, data.exception || 'No se pudo actualizar la clave', false);
+        }
+    } catch (error) {
+        sweetAlert(2, 'Error de conexión con el servidor', false);
+    }
+});
+</script>
+</body>
+</html>

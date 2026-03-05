@@ -87,7 +87,7 @@ form .form-row .textarea{
   content: "";
   height: 2px;
   width: 100%;
-  background: #FF0000;
+  background: #000000;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;

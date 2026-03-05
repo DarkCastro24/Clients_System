@@ -78,7 +78,7 @@ class Report extends FPDF
     {
         if ($this->pagina != 1) {
             // Se establece el logo.
-            $this->Image('../../../resources/img/brand/logo.png', 15, 15, 38);
+            $this->Image('../../../resources/img/brand/logo_normal.png', 15, 15, 38);
             // Se ubica el título.
             $this->Cell(20);
             $this->SetFont('Arial', 'B', 15);
@@ -104,7 +104,7 @@ class Report extends FPDF
     {
         if ($this->pagina != 1) {
             // Se establece el logo.
-            $this->Image('../../../resources/img/brand/logo.png', 30, 22, 38);
+            $this->Image('../../../resources/img/brand/logo_normal.png', 30, 22, 38);
             // Se ubica el título.
             $this->Cell(20);
             $this->SetFont('Arial', 'B', 15);

@@ -8,13 +8,13 @@ Public_Page::headerTemplate('Clients System - Bienvenido');
     <div class="welcome--container">
         <div class="welcome--info">
             <div class="welcome--info__container">
-                <p class="welcome--info__title">Bienvenido a</p>
-                <img class="info--title__img" src="../../resources/img/brand/logoBlanco.png" alt="">
+                <p class="welcome--info__title">Bienvenido a Clients System </p>
+                <img class="info--title__img" src="../../reources/img/brand/logoBlanco.png" alt="">
             </div>
             <div class="welcome--info__text">
                 <p>
-                    Nos esforzamos por brindarte un servicio excepcional. <br>
-                    En este portal podrás tener acceso directo a información de interes para ti y tu compañía.
+                    Trabajamos para brindarte una experiencia ágil, clara y confiable. <br>
+                    En este portal tendrás acceso inmediato a la información clave para tu empresa y tus operaciones.
                 </p>
             </div>
             <div class="welcome--info__button">
@@ -25,12 +25,12 @@ Public_Page::headerTemplate('Clients System - Bienvenido');
             </div>
         </div>
         <div class="welcome--img">
-            <img class="welcome--img__svg" src="../../resources/img/svgs/undraw_Browser_stats_re_j7wy.svg" alt="">
+            <img class="welcome--img__svg" style="width: 420px; max-width: 70%; height: auto;" src="https://undraw.co/features_1.svg" alt="Ilustración de panel y analítica">
         </div>
     </div>
 
     <?php
-    Public_Page::sectionTitleTemplate('MI INFORMACIÓN EMPRESARIAL', 'section--title');
+    Public_Page::sectionTitleTemplate('MI INFORMACIÓN', 'section--title');
     ?>
 
     <div class="card--options__container">
@@ -38,10 +38,10 @@ Public_Page::headerTemplate('Clients System - Bienvenido');
             <div class="card col-mb-3 col-bg-3">
                 <h3 class="card-header">ESTADOS DE CUENTA</h3>
                 <div class="options--img__container">
-                    <img class="card--options__img" src="../../resources/img/svgs/undraw_All_the_data_re_hh4w.svg" alt="">
+                    <img class="card--options__img" src="https://undraw.co/features_6.svg" alt="Ilustración de reportes y crecimiento">
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Accede a todos tus estados de cuenta actualizados a la fecha.</p>
+                    <p class="card-text">Consulta tus estados de cuenta con información actualizada y lista para revisión.</p>
                 </div>
             </div>
         </a>
@@ -49,10 +49,10 @@ Public_Page::headerTemplate('Clients System - Bienvenido');
             <div class="card col-mb-3 col-bg-3">
                 <h3 class="card-header">STATUS DE PÉDIDO</h3>
                 <div class="options--img__container">
-                    <img class="card--options__img" src="../../resources/img/svgs/undraw_Booked_re_vtod.svg" alt="">
+                    <img class="card--options__img" src="https://undraw.co/features_5.svg" alt="Ilustración de seguimiento de pedidos">
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Accede a la información de los status de tus pedidos.</p>
+                    <p class="card-text">Da seguimiento al estado de tus pedidos y mantente al tanto de cada actualización.</p>
                 </div>
             </div>
         </a>
@@ -60,22 +60,13 @@ Public_Page::headerTemplate('Clients System - Bienvenido');
             <div class="card col-mb-3 col-bg-3">
                 <h3 class="card-header">ÍNDICE DE ENTREGA</h3>
                 <div class="options--img__container">
-                    <img class="card--options__img" src="../../resources/img/svgs/undraw_deliveries_131a.svg" alt="">
+                    <img class="card--options__img" src="https://undraw.co/ud_steps_3.svg" alt="Ilustración de flujo de entregas">
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Verifica nuestros índices de estado de entrega aquí.</p>
+                    <p class="card-text">Revisa nuestros indicadores de cumplimiento y desempeño en tiempos de entrega.</p>
                 </div>
             </div>
         </a>
-    </div>
-
-    <?php
-    Public_Page::sectionTitleTemplate('TU ÉXITO ES NUESTRO ÉXITO', 'section--announcement');
-    ?>
-
-    <div class="announcement--container">
-        <h1 class="announcement--container__title">¡Celebramos más de 20 años de relación comercial contigo!</h1>
-        <img class="announcement--container__img  img-fluid" src="../../resources/img/svgs/undraw_happy_announcement_ac67.svg" alt="">
     </div>
 
     <div class="contact--container">
@@ -83,11 +74,11 @@ Public_Page::headerTemplate('Clients System - Bienvenido');
             <img class="contact--img" src="../../resources/img/profile/person.jpg" alt="">
         </div> -->
         <div class="contact--info mt-4">
-            <h5 class="contact--info__title">Contacta a tu consultor informatico</h5>
+            <h5 class="contact--info__title">Contacta a tu consultor informático</h5>
             <h3 class="contact--info__name" id="responsable-name">DIEGO CASTRO</h3>
-            <p class="contact--info__position">Programador</p>
+            <p class="contact--info__position">Desarrollador FullStack</p>
             <p class="contact--info__contacts" id="responsable-telefono">T: (503) 7988-5288</p>
-            <p class="contact--info__mail" id="responsable-correo">diegocastro.clientssystem.com</p>
+            <p class="contact--info__mail" id="responsable-correo">DiegoCastro360z@gmail.com</p>
         </div>
     </div>
 

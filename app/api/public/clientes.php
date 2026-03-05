@@ -148,10 +148,12 @@ if (isset($_GET['action'])) {
                         $_SESSION['empresa'] = $cliente->getEmpresa();
                         $_SESSION['correo'] = $cliente->getCorreo();
                         $_SESSION['clave'] = $_POST['clave'];
+                        // Se habilita el acceso inmediato a las vistas del sistema.
+                        $_SESSION['validador'] = 'Success';
                         $_SESSION['intentos'] = 0;
                         $result['status'] = 1;
                         // Mostramos mensaje de bienvenido al usuario
-                        $result['message'] = 'Debes autenticar tu identidad para continuar';
+                        $result['message'] = 'Inicio de sesión correcto';
                         // En caso exista un error de validacion se mostrara su respectivo mensaje
                     } else {
                         if ($_SESSION['intentos3'] >= 3) {
@@ -297,6 +299,28 @@ if (isset($_GET['action'])) {
             } else {
                 // En caso de ocurrir fallar la funcion mostramos el mensaje
                 $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+            }
+            break;
+            // Caso para actualizar la contraseña de un cliente por su nombre de usuario
+        case 'updatePasswordByUser':
+            // Validamos el form donde se encuentran los inputs para obtener los datos
+            $_POST = $cliente->validateForm($_POST);
+            // Validamos si el usuario existe en la base de datos
+            if ($cliente->checkUser($_POST['usuario'])) {
+                // Validamos si la clave ingresada cumple los requisitos
+                if ($cliente->setClave($_POST['clave'])) {
+                    // Ejecutamos la funcion para actualizar la contraseña
+                    if ($cliente->changePassword($cliente->getId())) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Clave actualizada correctamente';
+                    } else {
+                        $result['exception'] = 'No se pudo actualizar la clave';
+                    }
+                } else {
+                    $result['exception'] = $cliente->getPasswordError();
+                }
+            } else {
+                $result['exception'] = 'Usuario inexistente';
             }
             break;
         default:

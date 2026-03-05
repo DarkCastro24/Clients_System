@@ -29,9 +29,11 @@ main {
 }
 
 .nav--logo {
-  margin: 0px 25px !important;
+  margin: 0px 25px 0px -30px !important;
   width: 120px;
   height: 80px;
+  transform: scale(2.5);
+  transform-origin: left;
 }
 
 .nav--user__icon {
@@ -97,7 +99,7 @@ main {
 
 /***********TITLE SECTION**********************************************************/
 .section--title__container {
-    background: #D0112B;
+  background: #000000;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -244,7 +246,7 @@ main {
 .info--title__img {
   width: 120px;
   padding: 0px 5px;
-  background-color: red;
+  background-color: #000000;
   border-radius: 15px;
 }
 
