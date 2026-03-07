@@ -30,6 +30,14 @@ Los servicios estarán disponibles en:
 - Vista de cliente desde Docker: http://localhost/views/public/index.php
 - Vista de administrador desde Docker: http://localhost/views/dashboard/index.php
 
+### 4. Eliminar los contenedores
+
+```bash
+docker-compose down
+```
+
+Este comando detiene y elimina los contenedores creados por `docker-compose`.
+
 ## Tecnologías utilizadas
 
 - **PHP** Lógica del lado del servidor
