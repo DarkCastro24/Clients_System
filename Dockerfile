@@ -15,15 +15,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Configurar directorio de trabajo
 WORKDIR /var/www/html
 
-# Copiar archivos del proyecto manteniendo la estructura Clients_System
-COPY . Clients_System/
+# Copiar archivos del proyecto al DocumentRoot
+COPY . /var/www/html/
 
 # Instalar dependencias de Composer
-RUN cd Clients_System && composer install --no-interaction --optimize-autoloader && cd ..
+RUN composer install --no-interaction --optimize-autoloader
 
 # Establecer permisos
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 80 443
+EXPOSE 80
 
 CMD ["apache2-foreground"]

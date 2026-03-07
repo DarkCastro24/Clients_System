@@ -11,7 +11,7 @@ use Dotenv\Dotenv;
 
 // Cargar variables de entorno
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-$dotenv->load();
+$dotenv->safeLoad();
 
 /**
  * Función auxiliar para obtener variables de entorno

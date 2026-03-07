@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: clients-system-web
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /views/public/index.php
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: clients-system-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: clients-system-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: clients-system-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: clients-system-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: clients-system-db
+          property: password
+      - key: DB_DRIVER
+        value: pgsql
+      - key: MAIL_HOST
+        sync: false
+      - key: MAIL_PORT
+        value: "587"
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_FROM_ADDRESS
+        sync: false
+      - key: MAIL_FROM_NAME
+        value: Sistema de recuperacion
+
+databases:
+  - name: clients-system-db
+    databaseName: clients_system
+    plan: free
